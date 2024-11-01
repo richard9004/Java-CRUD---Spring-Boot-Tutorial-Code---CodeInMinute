@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Create Product</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Create Product</h1>
+    <form th:action="@{/products/create}" th:object="${productDto}" method="post" enctype="multipart/form-data" class="mt-4">
+
+        <!-- Name Field -->
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Enter product name">
+            <div th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}">Name Error</div>
+        </div>
+
+        <!-- Brand Field -->
+        <div class="mb-3">
+            <label for="brand" class="form-label">Brand</label>
+            <input type="text" th:field="*{brand}" class="form-control" id="brand" placeholder="Enter brand name">
+            <div th:if="${#fields.hasErrors('brand')}" class="text-danger" th:errors="*{brand}">Brand Error</div>
+        </div>
+
+        <!-- Category Field -->
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <input type="text" th:field="*{category}" class="form-control" id="category" placeholder="Enter category">
+            <div th:if="${#fields.hasErrors('category')}" class="text-danger" th:errors="*{category}">Category Error</div>
+        </div>
+
+        <!-- Price Field -->
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" th:field="*{price}" class="form-control" id="price" placeholder="Enter price" min="0">
+            <div th:if="${#fields.hasErrors('price')}" class="text-danger" th:errors="*{price}">Price Error</div>
+        </div>
+
+        <!-- Description Field -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea th:field="*{description}" class="form-control" id="description" rows="3" placeholder="Enter product description"></textarea>
+            <div th:if="${#fields.hasErrors('description')}" class="text-danger" th:errors="*{description}">Description Error</div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
